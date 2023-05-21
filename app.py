@@ -65,7 +65,7 @@ if match:
     shortcode=match.group(1)
     try:
         post = instaloader.Post.from_shortcode(loader.context, shortcode)
-        filePath = str(time.time())
+        filePath = str(int(time.time()))
         loader.download_post(post, target=filePath)
         for file in Path(filePath).glob('*'):
             if not file.name.endswith('.mp4'):
