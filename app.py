@@ -66,10 +66,11 @@ if match:
     try:
         post = instaloader.Post.from_shortcode(loader.context, shortcode)
         filePath = str(time.time())
-        for file in Path(post.owner_username).glob('*'):
+        loader.download_post(post, target=filePath)
+        for file in Path(filePath).glob('*'):
             if not file.name.endswith('.mp4'):
                 file.unlink()
-        loader.download_post(post, target=filePath)
+        
     except Exception as e:
         print(e)
 
